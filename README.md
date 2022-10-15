@@ -14,3 +14,19 @@ Team members:
 ### University project to manage the office queue.
 
 ### the project will be written in React/JavaScript
+## Technology
+
+### Front-end
+
+- React
+- React-Bootstrap
+- React-Toastify
+- Axios
+- React Router
+
+### Back-end
+
+- Express
+- NodeJS
+- SQLite
+- Passport
