@@ -20,13 +20,15 @@ Team members:
 
 - React
 - React-Bootstrap
+- React Router
 - React-Toastify
 - Axios
-- React Router
+- Dayjs
 
 ### Back-end
 
+- Cors
 - Express
 - NodeJS
-- SQLite
-- Passport
+- SQLite3
+- Dayjs
