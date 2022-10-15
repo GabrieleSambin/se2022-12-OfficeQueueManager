@@ -1,3 +1,18 @@
 # se2022-12-OfficeQueueManager
 
-### the project will be written in React/JavaScript.
+## Technology
+
+### Front-end
+
+- React
+- React-Bootstrap
+- React-Toastify
+- Axios
+- React Router
+
+### Back-end
+
+- Express
+- NodeJS
+- SQLite
+- Passport
