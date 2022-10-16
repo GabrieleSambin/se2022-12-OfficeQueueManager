@@ -1,17 +1,15 @@
 //Imports
-import { Container, Row, Navbar as MyNavbar } from 'react-bootstrap';
+import { Container, Navbar as MyNavbar } from 'react-bootstrap';
 
 const Navbar = () => {
     return (
-        <Row>
-            <MyNavbar bg="primary" variant="dark">
-                <Container fluid>
-                    <MyNavbar.Brand>
-                        <span className='fw-bold fst-italic'>OfficeQueueManager</span>
-                    </MyNavbar.Brand>
-                </Container>
-            </MyNavbar>
-        </Row>
+        <MyNavbar fixed='top' bg="primary" variant="dark">
+            <Container fluid>
+                <MyNavbar.Brand>
+                    <span className='fw-bold fst-italic'>Office Queue Management</span>
+                </MyNavbar.Brand>
+            </Container>
+        </MyNavbar>
     );
 }
 

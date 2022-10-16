@@ -16,6 +16,8 @@ const App = () => {
         <Route index path='/' element={<View.Home />} />
         <Route index path='/customer' element={<View.Customer />} />
         <Route index path='/counter' element={<View.Counter />} />
+        <Route index path='/managerStats' element={<View.ManagerStats />} />
+        <Route index path='/managerConfiguration' element={<View.ManagerConfiguration />} />
         <Route path='*' element={<View.ErrorView />} />
       </Routes>
     </AppContainer>
