@@ -1,13 +1,14 @@
 //Imports
 
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row , Container} from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 
 const Customer = (props) => {
     return (
         <>
+        <Container className='h-100 d-flex flex-column align-item-center justify-content-center'>
         <Row className="justify-content-md-center">
-            <Col><h1 className="cnt">Choose your service</h1></Col>
+            <Col><h2 className="cnt">Choose your service</h2></Col>
         </Row>
         
         <Row className="cnt1">
@@ -56,6 +57,7 @@ const Customer = (props) => {
             </Table>
             </Col>
         </Row>
+        </Container>
         </>
     );
 
