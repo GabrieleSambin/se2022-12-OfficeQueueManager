@@ -11,11 +11,6 @@ Team members:
 - s303907 TAMBURO LUCA
 - s301587 TROVERO FABIO
 
-### University project to manage the office queue.
-
-### the project will be written in React/JavaScript
-## Technology
-
 ### Front-end
 
 - React
