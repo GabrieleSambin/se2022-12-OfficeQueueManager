@@ -19,20 +19,3 @@ body,
   flex-direction: column;
   justify-content: space-between;
 }
-.cnt{
-  text-align: center;
-  margin-top: 1.5em;
-}
-
-.cnt1{
-  text-align: center;
-  padding-top: 3em;
-  justify-content: center;
-}
-.table{
-  background:#353a40;;
-}
-
-.white{
-  color: white;
-}
