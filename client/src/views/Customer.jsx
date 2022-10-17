@@ -13,10 +13,10 @@ const Customer = (props) => {
         </Row>
         
         <Row className="cnt1">
-            <Col xs lg="2"><Button size="lg"> Service 1</Button></Col>
-            <Col xs lg="2"><Button size="lg"> Service 2</Button></Col>
-            <Col xs lg="2"><Button size="lg"> Service 3</Button></Col>
-            <Col xs lg="2"><Button size="lg"> Service 4</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(1)}}> Service 1</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(2)}}> Service 2</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(3)}}> Service 3</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(4)}}> Service 4</Button></Col>
         </Row>
 
         <Row className="cnt1">

@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express');
+const TicketDAO = require('../dao/TicketDAO');
 const router = express.Router();
 const {Queue} = require('../models/queueModel');
 const dayjs = require('dayjs')
@@ -20,7 +21,7 @@ router.post('/newTicket', [ body('ST_ID').notEmpty()], async (req, res) => {
         QueueList[req.body.ST_ID].enqueue();
         return res.status(201).end();
     } catch (err) {
-        return res.status(503).end();
+        return res.status(err).end();
     }
 });
 

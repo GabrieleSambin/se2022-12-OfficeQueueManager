@@ -1,13 +1,13 @@
 //Imports
 import axios from "axios";
 
-const SERVER_URL = 'http://localhost:3001';
+const SERVER_URL = 'http://localhost:3001/';
 
 const api = {
 
-    addTicket: (ID_Counter, ST_ID , Date, State) => {
+    addTicket: ( ST_ID ) => {
         return new Promise((resolve, reject) => {
-            axios.post(SERVER_URL + 'newTicket', { ID_Counter, ST_ID, Date,State })
+            axios.post(SERVER_URL + 'api/newTicket', { ST_ID: ST_ID })
                 .then(res => resolve(res.data))
                 .catch(err => reject({ data: err.response.data, status: err.response.status }))
         })
