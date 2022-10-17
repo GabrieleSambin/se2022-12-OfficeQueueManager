@@ -4,9 +4,7 @@
 const express = require('express');
 const res = require('express/lib/response');
 const morgan = require('morgan');
-const dayjs = require('dayjs');
 const cors = require('cors');
-const { check, param, body, validationResult } = require('express-validator');
 
 //DAOs
 const TicketDAO = require('./dao/TicketDAO');
