@@ -27,9 +27,6 @@ app.use(cors(corsOptions));
 
 const { Queue } = require('./models/queueModel');
 
-let serviceNumber = 4 // this value will be read from db
-
-let QueueList = [new Queue(1, dayjs(), 0, 0), new Queue(2, dayjs(), 0, 0), new Queue(3, dayjs(), 0, 0), new Queue(4, dayjs(), 0, 0)]; // these values will be read from db (and done with a cicle)
 
 const ticketRouter = require("./routes/ticketRoute");
 
