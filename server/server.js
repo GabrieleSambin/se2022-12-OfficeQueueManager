@@ -9,7 +9,7 @@ const cors = require('cors');
 const { check, param, body, validationResult } = require('express-validator');
 
 //DAOs
-const TicketDAO = require('./TicketDAO');
+const TicketDAO = require('./dao/TicketDAO');
 
 //server options setup
 const PORT = 3001;
