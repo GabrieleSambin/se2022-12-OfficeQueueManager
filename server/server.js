@@ -9,25 +9,28 @@ const cors = require('cors');
 //DAOs
 const TicketDAO = require('./dao/TicketDAO');
 
-//server options setup
-const PORT = 3001;
-const app = express();
 
+//Init express and set-up middlewares
+const app = express();
+app.use(morgan('dev'));
+app.use(express.json());
+
+//Set up and enable Cross-Origin Resource Sharing (CORS)
 const corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200,
     credentials: true
 };
-
-app.use(morgan('dev'));
-app.use(express.json());
 app.use(cors(corsOptions));
 
+//Routes and model
 const { Queue } = require('./models/queueModel');
-
-
 const ticketRouter = require("./routes/ticketRoute");
 
+
+/* --- APIs --- */
 app.use("/api", ticketRouter);
 
+
+const PORT = 3001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}/`));
