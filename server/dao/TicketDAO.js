@@ -3,7 +3,7 @@
 const sqlite = require('sqlite3');
 const {Queue} = require('../models/queueModel');
 
-const db = sqlite.Database('office_queue_manager.db', err => { if (err) throw err;});
+const db = new sqlite.Database('office_queue_manager.db', err => { if (err) throw err;});
 
 exports.insertTicket = (ID_Counter, ST_ID, TDate, State) => {
     return new Promise((resolve, reject) => {

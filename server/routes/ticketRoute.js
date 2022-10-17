@@ -1,8 +1,9 @@
 'use strict'
-const router = express.Router()
-const express = require('express');
-const {Queue} = require('../models/queueModel');
 
+const express = require('express');
+const router = express.Router();
+const {Queue} = require('../models/queueModel');
+const dayjs = reuire('dayjs')
 
 let QueueList = [new Queue(0, dayjs(), 0, 0), new Queue(1, dayjs(), 0, 0), new Queue(2, dayjs(), 0, 0), new Queue(3, dayjs(), 0, 0)]; // these values will be read from db (and done with a cicle)
 
