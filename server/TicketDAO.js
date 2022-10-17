@@ -1,7 +1,7 @@
 'use strict';
 
 const sqlite = require('sqlite3');
-const {Queue} = require('./Queue');
+const {Queue} = require('./models/queueModel');
 
 const db = sqlite.Database('office_queue_manager.db', err => { if (err) throw err;});
 
