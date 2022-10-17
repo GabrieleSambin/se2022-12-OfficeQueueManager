@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css' // eslint-disable-line
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ToastContainer newestOnTop={false} />
     <BrowserRouter>
       <App />
     </BrowserRouter>
