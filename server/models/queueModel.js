@@ -34,4 +34,8 @@ function Queue (ST_ID, date, first=0, last=0){
     }
 }
 
+
+let QueueList = [new Queue(1, dayjs(), 0, 0), new Queue(2, dayjs(), 0, 0), new Queue(3, dayjs(), 0, 0), new Queue(4, dayjs(), 0, 0)]; // these values will be read from db (and done with a cicle)
+
 exports.Queue = Queue;
+exports.QueueList = QueueList;

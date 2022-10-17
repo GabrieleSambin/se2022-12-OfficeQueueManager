@@ -3,12 +3,9 @@
 const express = require('express');
 const TicketDAO = require('../dao/TicketDAO');
 const router = express.Router();
-const {Queue} = require('../models/queueModel');
+const {Queue, QueueList} = require('../models/queueModel');
 const dayjs = require('dayjs')
 const { check, param, body, validationResult } = require('express-validator');
-
-
-let QueueList = [new Queue(1, dayjs(), 0, 0), new Queue(2, dayjs(), 0, 0), new Queue(3, dayjs(), 0, 0), new Queue(4, dayjs(), 0, 0)]; // these values will be read from db (and done with a cicle)
 
 
 router.post('/newTicket', [ body('ST_ID').notEmpty()], async (req, res) => {
