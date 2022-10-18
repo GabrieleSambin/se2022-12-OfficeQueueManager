@@ -11,6 +11,15 @@ const api = {
                 .then(res => resolve(res.data))
                 .catch(err => reject({ data: err.response.data, status: err.response.status }))
         })
+    },
+
+    //this gives us the waiting time given the service type
+    getWaitingTime: (ST_ID) => {
+        return new Promise((resolve, reject) => {
+            axios.get(SERVER_URL + `api/getWaitingTime/${ST_ID}`)
+            .then(res => resolve(res.data))
+            .catch(err => reject({ data: err.response.data, status: err.response.status }));
+        })
     }
 
     /* getCourses: () => {
