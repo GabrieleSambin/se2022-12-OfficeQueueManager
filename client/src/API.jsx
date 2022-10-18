@@ -20,6 +20,22 @@ const api = {
             .then(res => resolve(res.data))
             .catch(err => reject({ data: err.response.data, status: err.response.status }));
         })
+    },
+
+    putTicket: (ST_ID, ID_Counter) => {
+        return new Promise((resolve, reject) => {
+            axios.put(SERVER_URL + 'api/Ticket', {ST_ID: ST_ID, ID_Counter: ID_Counter})
+                .then(res => resolve(res.data))
+                .catch(err => reject({ data: err.response.data, status: err.response.status }))
+        })
+    },
+
+    getService: (ID) => {
+        return new Promise((resolve, reject) => {
+            axios.get(SERVER_URL + 'api/ServiceCounter', {params: { ID: ID }}) 
+                .then(res => resolve(res.data))
+                .catch(err => reject({ data: err.response.data, status: err.response.status}))
+        })
     }
 
     /* getCourses: () => {
@@ -29,8 +45,6 @@ const api = {
                 .catch(err => reject({ data: err.response.data, status: err.response.status }));
         })
     },
-
-    
 
     addStudyPlan: (courses, type_id, tot_credits) => {
         return new Promise((resolve, reject) => {
