@@ -12,9 +12,26 @@ exports.insertTicket = (ID_Counter, ST_ID, TDate, State, Ticket_Number) => {
         db.run(sql, [ ID_Counter, ST_ID, TDate, State, Ticket_Number], function(err) {
             if(err){
                 reject(err);
-                return;
             }else{
                 resolve(this.lastId);
+            }
+        });
+    });
+}
+
+exports.getTicket = (id, service, date) => {    
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date = ? ";
+        db.get(sql, [id, service, date], (err, rows) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                if(rows===undefined){
+                    resolve(undefined);
+                }
+                else
+                resolve(rows);
             }
         });
     });
@@ -23,7 +40,7 @@ exports.insertTicket = (ID_Counter, ST_ID, TDate, State, Ticket_Number) => {
 exports.modifyTicket = (Ticket_Number, ST_ID, ID_Counter) => {
     return new Promise((resolve, reject) => {
         let newID_Counter = ID_Counter
-        let newState = 'CLOSE'
+        let newState = 1
         let Today = dayjs().hour(0).minute(0).second(0)
         const sql1 = 'SELECT COUNT(*) AS count FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date >= ?';
         db.get(sql1, [Ticket_Number, ST_ID, Today], (err, r) => {

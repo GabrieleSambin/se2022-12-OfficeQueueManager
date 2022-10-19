@@ -16,7 +16,7 @@ router.post('/newTicket', [ body('ST_ID').notEmpty()], async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     try {
-        await TicketDAO.insertTicket(0, req.body.ST_ID, req.body.TDate = dayjs(), req.body.State = 'OPEN', QueueList[req.body.ST_ID-1].last+1);
+        await TicketDAO.insertTicket(0, req.body.ST_ID, req.body.TDate = dayjs(), req.body.State = 0, QueueList[req.body.ST_ID-1].last+1);
         QueueList[req.body.ST_ID-1].enqueue();
         return res.status(201).end();
     } catch (err) {
@@ -33,6 +33,19 @@ router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()
         } catch (err) {
             return res.status(err).end();
         }
+    }
+});
+
+router.get('/Ticket/:Ticket_Number/:ST_ID/:TDate', [ param('ST_ID').notEmpty(), param('Ticket_Number').notEmpty(), param('TDate').notEmpty()], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    try {
+        let t = await TicketDAO.getTicket(req.params.Ticket_Number, req.params.ST_ID, req.params.TDate);
+        return res.status(200).json(t).end();
+    } catch (err) {
+        return res.status(err).end();
     }
 });
 
