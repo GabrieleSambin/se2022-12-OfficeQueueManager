@@ -4,6 +4,9 @@ import { Button, Col, Row , Container} from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 import api from "../API";
 
+
+
+
 const Customer = (props) => {
     return (
         <>
@@ -13,10 +16,10 @@ const Customer = (props) => {
         </Row>
         
         <Row className="cnt1">
-            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(1)}}> Service 1</Button></Col>
-            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(2)}}> Service 2</Button></Col>
-            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(3)}}> Service 3</Button></Col>
-            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(4)}}> Service 4</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(1); api.getWaitingTime(1)}}> Service 1</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(2); api.getWaitingTime(2)}}> Service 2</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(3); api.getWaitingTime(3)}}> Service 3</Button></Col>
+            <Col xs lg="2"><Button size="lg" onClick={() => {api.addTicket(4); api.getWaitingTime(4)}}> Service 4</Button></Col>
         </Row>
 
         <Row className="cnt1">
