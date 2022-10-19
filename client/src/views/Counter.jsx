@@ -2,6 +2,8 @@
 import Form from 'react-bootstrap/Form';
 import {Button, Col, Row , Container} from "react-bootstrap";
 import api from "../API";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Counter = () => {
     let counterNumber = 1; 
@@ -10,7 +12,7 @@ const Counter = () => {
         try {
             let service = await api.getService(counterNumber)
             let ticketNumber = await api.putTicket(service, counterNumber)
-            //Alert client
+            toast('Operation performed succefully!\n You served ticket ' + ticketNumber + ' for service ' + service)
         }
         catch (err) {
             throw err;

@@ -27,9 +27,7 @@ router.post('/newTicket', [ body('ST_ID').notEmpty()], async (req, res) => {
 router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()], async (req, res) => {
     if (QueueList[req.body.ST_ID-1].getLenght() > 0) {
         try {
-            console.log(req.body.ST_ID)
             let Ticket_Number = QueueList[req.body.ST_ID-1].dequeue();
-            console.log(Ticket_Number)
             await TicketDAO.modifyTicket(Ticket_Number, req.body.ST_ID, req.body.ID_Counter);
             return res.status(201).json(Ticket_Number).end();
         } catch (err) {
