@@ -2,17 +2,17 @@
 import Form from 'react-bootstrap/Form';
 import {Button, Col, Row , Container} from "react-bootstrap";
 import api from "../API";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import useNotification from '../hooks/useNotification';
 
 const Counter = () => {
     let counterNumber = 1; 
+    const notify = useNotification();
 
     async function callClient(counterNumber) {
         try {
             let service = await api.getService(counterNumber)
             let ticketNumber = await api.putTicket(service, counterNumber)
-            toast('Operation performed succefully!\n You served ticket ' + ticketNumber + ' for service ' + service)
+            notify.success('You served ticket ' + ticketNumber + ' for service ' + service);
         }
         catch (err) {
             throw err;

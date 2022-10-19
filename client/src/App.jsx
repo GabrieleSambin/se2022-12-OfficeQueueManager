@@ -1,6 +1,7 @@
 //Imports
 import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Components
 import AppContainer from './components/AppContainer';
