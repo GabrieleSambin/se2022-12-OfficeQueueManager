@@ -12,8 +12,7 @@ exports.insertTicket = (ID_Counter, ST_ID, TDate, State) => {
         db.run(sql, [ID_Counter, ST_ID, TDate, State], function (err) {
             if (err) {
                 reject(err);
-                return;
-            } else {
+            }else{
                 resolve(this.lastId);
             }
         });
@@ -24,6 +23,45 @@ exports.getTicketbyCounter = (ID_Counter) => {
     return new Promise((resolve, reject) => {
         const sql = 'SELECT ID FROM Ticket WHERE ID_Counter = ? AND State = "OPEN"';
         db.all(sql, [ID_Counter], (err, rows) => {
+            if (err) {
+                reject(err);
+            }
+            const counters = rows.map((r) => (
+                {
+                    ID: r.ID,
+                }
+            ));
+            resolve(counters[0]);
+        });
+    });
+
+}
+
+exports.getTicket = (id, service, date) => {    
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date = ? ";
+        db.get(sql, [id, service, date], (err, rows) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                if(rows===undefined){
+                    resolve(undefined);
+                }
+                else
+                resolve(rows);
+            }
+        });
+    });
+}
+
+exports.modifyTicket = (Ticket_Number, ST_ID, ID_Counter) => {
+    return new Promise((resolve, reject) => {
+        let newID_Counter = ID_Counter
+        let newState = 1
+        let Today = dayjs().hour(0).minute(0).second(0)
+        const sql1 = 'SELECT COUNT(*) AS count FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date >= ?';
+        db.get(sql1, [Ticket_Number, ST_ID, Today], (err, r) => {
             if (err) {
                 reject(err);
             }

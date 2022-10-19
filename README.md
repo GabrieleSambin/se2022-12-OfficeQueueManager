@@ -15,7 +15,7 @@ Team members:
 
 - React
 - React-Bootstrap
-- React Router
+- React-Router
 - React-Toastify
 - Axios
 - Dayjs
@@ -28,3 +28,5 @@ Team members:
 - SQLite3
 - Dayjs
 - Morgan
+- Jest
+- Chai
