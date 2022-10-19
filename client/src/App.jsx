@@ -1,7 +1,7 @@
 //Imports
 import './App.css';
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 
 //Components
 import AppContainer from './components/AppContainer';
@@ -10,14 +10,16 @@ import AppContainer from './components/AppContainer';
 import * as View from './views';
 
 const App = () => {
+  const [ticket, setTicket] = useState(1);
+  const [counter, setCounter] = useState(1)
   const location = useLocation();
 
   return (
     <AppContainer>
       <Routes location={location} key={location.pathname}>
         <Route index path='/' element={<View.Home />} />
-        <Route index path='/customer' element={<View.Customer />} />
-        <Route index path='/counter' element={<View.Counter/>} />
+        <Route index path='/customer' element={<View.Customer counter={counter} ticket={ticket} />} />
+        <Route index path='/counter' element={<View.Counter setCounter={setCounter} setTicket={setTicket} />} />
         <Route index path='/managerStats' element={<View.ManagerStats />} />
         <Route index path='/managerConfiguration' element={<View.ManagerConfiguration />} />
         <Route path='*' element={<View.ErrorView />} />

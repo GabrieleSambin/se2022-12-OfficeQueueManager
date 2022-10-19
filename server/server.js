@@ -9,7 +9,6 @@ const cors = require('cors');
 //DAOs
 const TicketDAO = require('./dao/TicketDAO');
 
-
 //Init express and set-up middlewares
 const app = express();
 app.use(morgan('dev'));
@@ -26,12 +25,14 @@ app.use(cors(corsOptions));
 //Routes and model
 const { Queue } = require('./models/queueModel');
 const ticketRouter = require("./routes/ticketRoute");
-const waitingTimeRouter = require('./routes/waitingTimeRoute');
+const serviceRouter = require("./routes/serviceRoute");
+const counterRouter = require("./routes/counterRoute");
+//const waitingTimeRouter = require('./routes/waitingTimeRoute');
 
 
 /* --- APIs --- */
-app.use("/api", ticketRouter);
-app.use('/api', waitingTimeRouter);
+app.use("/api", ticketRouter, serviceRouter, counterRouter);
+//app.use('/api', waitingTimeRouter);
 
 
 const PORT = 3001;
