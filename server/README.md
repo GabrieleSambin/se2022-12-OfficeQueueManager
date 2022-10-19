@@ -1,6 +1,6 @@
 API: 
 - POST `/api/newTicket`
-    - body{ID_Counter (must be 0), ST_ID, TDate, State}
+    - body{ID_Counter* (must be 0), ST_ID, TDate*, State*}
     
 - GET `/api/Ticket/:Ticket_Number/:ST_ID/:TDate`
     - param{Ticket_Number, ST_ID, TDate}
@@ -10,7 +10,7 @@ API:
     - param{ID}
 
 - PUT `/api/Ticket`. Updates the Counter and State for a Date, Counter and Service. newState is 'CLOSE' and newID_Counter is ID_Counter.
-    - body{ST_ID, ID_Counter}
+    - body{ST_ID, ID_Counter, State}
 
 
 ## Ticket state:

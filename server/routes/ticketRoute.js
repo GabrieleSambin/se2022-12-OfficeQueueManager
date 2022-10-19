@@ -51,7 +51,7 @@ router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()
     if (QueueList[req.body.ST_ID - 1].getLenght() > 0) {
         try {
             let Ticket_Number = QueueList[req.body.ST_ID - 1].dequeue();
-            await TicketDAO.modifyTicket(Ticket_Number, req.body.ST_ID, req.body.ID_Counter);
+            await TicketDAO.modifyTicket(Ticket_Number, req.body.ST_ID, req.body.ID_Counter, req.body.State);
             return res.status(201).json(Ticket_Number).end();
         } catch (err) {
             return res.status(err).end();
