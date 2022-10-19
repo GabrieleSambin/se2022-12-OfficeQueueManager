@@ -30,3 +30,4 @@ Team members:
 - Morgan
 - Jest
 - Chai
+- Mocha
