@@ -3,6 +3,7 @@
 const express = require('express');
 const TicketDAO = require('../dao/TicketDAO');
 const CounterDAO = require('../dao/CounterDAO');
+const ServiceDAO = require('../dao/ServiceDAO');
 const router = express.Router();
 const { Queue, QueueList } = require('../models/queueModel');
 const dayjs = require('dayjs')
@@ -75,12 +76,18 @@ router.get('/Ticket/:Ticket_Number/:ST_ID/:TDate', [ param('ST_ID').notEmpty(), 
 router.get('/ServiceCounter/:id', async (req, res) => {
     try {
         const services = await CounterDAO.getServices(req.params.id);
+        const time = await ServiceDAO.getTime();
 
         //Algorithm to determine which service to attend
         let serviceMaxQueue = services[0].ST_ID
         for (let service of services) {
-            if (QueueList[service.ST_ID - 1].getLenght() > QueueList[serviceMaxQueue - 1].getLenght()) {
+            if (QueueList[service.ST_ID - 1].getLenght() * (time[service.ST_ID - 1].Service_Time) > QueueList[serviceMaxQueue - 1].getLenght() * (time[serviceMaxQueue - 1].Service_Time)) {
                 serviceMaxQueue = service.ST_ID
+            }
+            if (QueueList[service.ST_ID - 1].getLenght() * (time[service.ST_ID - 1].Service_Time) == QueueList[serviceMaxQueue - 1].getLenght() * (time[serviceMaxQueue - 1].Service_Time)) {
+                if (time[service.ST_ID - 1].Service_Time < time[serviceMaxQueue - 1].Service_Time) {
+                    serviceMaxQueue = service.ST_ID
+                }
             }
         }
 
