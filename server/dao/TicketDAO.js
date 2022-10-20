@@ -50,23 +50,41 @@ exports.getTicketbyCounter = (ID_Counter) => {
 
 }
 
-exports.getTicket = (id, service, date) => {
+exports.getTicket = (ST_ID) => {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT * FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date = ? ";
-        db.get(sql, [id, service, date], (err, rows) => {
+        const sql = 'SELECT ID FROM Ticket WHERE ST_ID = ? AND State = 0';
+        db.all(sql, [ST_ID], (err, rows) => {
             if (err) {
                 reject(err);
             }
-            else {
-                if (rows === undefined) {
-                    resolve(undefined);
+            const counters = rows.map((r) => (
+                {
+                    ID: r.ID,
                 }
-                else
-                    resolve(rows);
-            }
+            ));
+            resolve(counters[0]);
         });
     });
+
 }
+
+// exports.getTicket = (id, service, date) => {
+//     return new Promise((resolve, reject) => {
+//         const sql = "SELECT * FROM Ticket WHERE Ticket_Number = ? AND ST_ID = ? AND Date = ? ";
+//         db.get(sql, [id, service, date], (err, rows) => {
+//             if (err) {
+//                 reject(err);
+//             }
+//             else {
+//                 if (rows === undefined) {
+//                     resolve(undefined);
+//                 }
+//                 else
+//                     resolve(rows);
+//             }
+//         });
+//     });
+// }
 
 
 exports.modifyTicket = (ID, ST_ID, ID_Counter, State) => {
@@ -78,9 +96,11 @@ exports.modifyTicket = (ID, ST_ID, ID_Counter, State) => {
         db.get(sql1, [ID], (err, r) => {
             if (err) {
                 reject(err)
-            } else if (r.count === 0) {
+            }
+            else if (r.count === 0) {
                 reject(new Error("ID not found"))
-            } else {
+            } 
+            else {
                 const sql2 = 'UPDATE Ticket SET ID_Counter = ?, State = ? WHERE ID = ?';
                 db.run(sql2, [newID_Counter, newState, ID], (err) => {
                     if (err) {

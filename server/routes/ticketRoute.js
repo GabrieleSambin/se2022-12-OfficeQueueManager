@@ -52,9 +52,13 @@ router.get('/getTicketbyService/:id', [], async (req, res) => {
 router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()], async (req, res) => {
     if (QueueList[req.body.ST_ID - 1].getLenght() > 0) {
         try {
+            console.log("ENTRA" + QueueList)
+
             let Ticket_Number = QueueList[req.body.ST_ID - 1].dequeue();
-            await TicketDAO.modifyTicket(Ticket_Number, req.body.ST_ID, req.body.ID_Counter, req.body.State);
-            return res.status(201).json(Ticket_Number).end();
+            let ticket = await TicketDAO.getTicket(req.body.ST_ID);
+            console.log(ticket);
+            await TicketDAO.modifyTicket(ticket.ID, req.body.ST_ID, req.body.ID_Counter, req.body.State);
+            return res.status(201).json(ticket.ID).end();
         } catch (err) {
             return res.status(err).end();
         }
@@ -77,7 +81,6 @@ router.get('/Ticket/:Ticket_Number/:ST_ID/:TDate', [param('ST_ID').notEmpty(), p
 router.get('/ServiceCounter/:id', async (req, res) => {
     try {
         const services = await CounterDAO.getServices(req.params.id);
-        console.log(services);
         const time = await ServiceDAO.getTime();
 
         //Algorithm to determine which service to attend
@@ -92,6 +95,8 @@ router.get('/ServiceCounter/:id', async (req, res) => {
                 }
             }
         }
+        console.log("FINISCE QUI");
+
         return res.status(201).json(serviceMaxQueue).end();
     } catch (err) {
         return res.status(err).end();
