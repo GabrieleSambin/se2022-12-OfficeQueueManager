@@ -9,14 +9,19 @@ import AppContainer from './components/AppContainer';
 //Views
 import * as View from './views';
 
+
 const App = () => {
-  const [ticket, setTicket] = useState(0);
+
+  
+  const [ticket, setTicket] = useState([0,0,0,0]);
   const [counter, setCounter] = useState(0)
   const location = useLocation();
 
   const handleCTable = (c, t) => {
+    let v = ticket;
+    v[c-1] = t;
     setCounter(c);
-    setTicket(t);
+    setTicket(v);
   }
 
   return (

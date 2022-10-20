@@ -81,17 +81,9 @@ function TableCounterData(props) {
     const [TicketCalled, setTicketCalled] = useState([])
     const notify = useNotification();
 
-    // console.log(props.countert);
-    // console.log(props.counter.ID);
-    // console.log(props.ticket);
 
     useEffect(() => {
-        if (props.countert === props.counter.ID) {
-            setTicketCalled(props.ticket)
-        }
-        else {
-            setTicketCalled(undefined)
-        }
+        setTicketCalled(props.ticket[props.counter.ID-1])
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
 
