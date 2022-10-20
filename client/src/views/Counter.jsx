@@ -23,13 +23,10 @@ const Counter = (props) => {
 
     let callNext = async () => {
         try {
-            console.log('entra')
             let service = await api.getService(counter);
             let ticketNumber = await api.putTicket(service, counter);
-            console.log("Service" + service);
-            console.log("TicketNumber" + ticketNumber);
             props.handleCTable(counter, ticketNumber);
-           
+
             notify.success('You served ticket ' + ticketNumber + ' for service ' + service);
             navigate('/', { replace: true });
         }

@@ -83,7 +83,7 @@ function TableCounterData(props) {
 
 
     useEffect(() => {
-        setTicketCalled(props.ticket[props.counter.ID-1])
+        setTicketCalled(props.ticket[props.counter.ID - 1])
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
 
@@ -116,7 +116,7 @@ function TableServiceData(props) {
     return (
         <>
             <tr>
-                <td>{props.service.ID}</td>
+                <td>{props.service.Name}</td>
                 <td>{length}</td>
             </tr>
         </>
