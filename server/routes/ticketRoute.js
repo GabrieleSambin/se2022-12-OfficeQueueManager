@@ -49,6 +49,7 @@ router.get('/getTicketbyService/:id', [], async (req, res) => {
         return res.status(err).end();
     }
 });
+
 router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()], async (req, res) => {
     if (QueueList[req.body.ST_ID - 1].getLenght() > 0) {
         try {
@@ -59,6 +60,8 @@ router.put('/Ticket', [body('ST_ID').notEmpty()], [body('ID_Counter').notEmpty()
         } catch (err) {
             return res.status(err).end();
         }
+    } else {
+        return res.status(404).end()
     }
 });
 

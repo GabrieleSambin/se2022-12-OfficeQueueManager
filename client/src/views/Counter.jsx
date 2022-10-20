@@ -31,7 +31,8 @@ const Counter = (props) => {
             navigate('/', { replace: true });
         }
         catch (err) {
-            notify.error(err);
+            if (err.status === 404)
+                notify.error("No tickets are in the queue for this counter!");
             throw err;
         }
     }
