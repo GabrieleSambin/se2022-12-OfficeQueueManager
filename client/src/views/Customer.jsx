@@ -49,9 +49,11 @@ const Customer = (props) => {
     }, []) //eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const handleTicket = (service_id, Name) => {
+    const handleTicket = async (service_id, Name) => {
         api.addTicket(service_id);
-        notify.success("Ticket correctly selected with service " + Name);
+        let wt = await api.getWaitingTime(service_id);
+        notify.success("Ticket correctly selected with service " + Name + " expected waiting time: " + wt);
+
         navigate('/', { replace: true });
     }
 

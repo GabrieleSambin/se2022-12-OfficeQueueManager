@@ -27,12 +27,11 @@ const { Queue } = require('./models/queueModel');
 const ticketRouter = require("./routes/ticketRoute");
 const serviceRouter = require("./routes/serviceRoute");
 const counterRouter = require("./routes/counterRoute");
-//const waitingTimeRouter = require('./routes/waitingTimeRoute');
+const waitingTimeRouter = require("./routes/waitingTimeRoute");
 
 
 /* --- APIs --- */
-app.use("/api", ticketRouter, serviceRouter, counterRouter);
-//app.use('/api', waitingTimeRouter);
+app.use("/api", ticketRouter, serviceRouter, counterRouter, waitingTimeRouter);
 
 
 const PORT = 3001;
