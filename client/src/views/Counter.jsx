@@ -24,8 +24,8 @@ const Counter = () => {
         try {
             let service = await api.getService(counter);
             let ticketNumber = await api.putTicket(service, counter);
-            // console.log(service);
-            // console.log(ticketNumber);
+            console.log(service);
+            console.log(ticketNumber);
             // toast('Operation performed succefully!\n You served ticket ' + ticketNumber + ' for service ' + service)
             notify.success('You served ticket ' + ticketNumber + ' for service ' + service);
         }

@@ -15,7 +15,7 @@ router.post('/newTicket', [body('ST_ID').notEmpty()], async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     try {
-        await TicketDAO.insertTicket(0, req.body.ST_ID, req.body.TDate = dayjs(), req.body.State = 0, QueueList[req.body.ST_ID-1].last+1);
+        await TicketDAO.insertTicket(0, req.body.ST_ID, dayjs(), 0, QueueList[req.body.ST_ID-1].last+1);
         QueueList[req.body.ST_ID-1].enqueue();
         return res.status(201).end();
     } catch (err) {
