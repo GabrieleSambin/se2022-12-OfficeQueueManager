@@ -1,9 +1,9 @@
 //Imports
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPointRight } from '@fortawesome/free-solid-svg-icons';
-//import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
 
 //Hooks
 import useNotification from '../hooks/useNotification';
@@ -11,10 +11,11 @@ import useNotification from '../hooks/useNotification';
 //APIs
 import api from "../API";
 
-const Counter = () => {
+const Counter = (props) => {
     //const [ticket, setTicket] = useState([]);
     const [counter, setCounter] = useState(0)
     const notify = useNotification();
+    const navigate = useNavigate();
 
     let handleCounter = (v) => {
         setCounter(v);
@@ -24,13 +25,16 @@ const Counter = () => {
         try {
             let service = await api.getService(counter);
             let ticketNumber = await api.putTicket(service, counter);
-            console.log(service);
-            console.log(ticketNumber);
-            // toast('Operation performed succefully!\n You served ticket ' + ticketNumber + ' for service ' + service)
+            console.log("Service" + service);
+            console.log("TicketNumber" + ticketNumber);
+            props.handleCTable(counter, ticketNumber);
+            //props.setCounter = counter;
+            //props.setTicketNumber = ticketNumber;
             notify.success('You served ticket ' + ticketNumber + ' for service ' + service);
+            navigate('/', { replace: true });
         }
         catch (err) {
-            console.log(err);
+            notify.error(err);
             throw err;
         }
     }
@@ -40,7 +44,7 @@ const Counter = () => {
             <Row className='mb-5'>
                 <h2 className='mb-4 text-center'>Select a counter and call the next customer</h2>
                 <Col xs={{ span: 3, offset: 3 }} className='mt-3 mx-auto text-center'>
-                    <Form.Select className="mb-4 text-center" value={0} onChange={(event) => handleCounter(event.target.value)}>
+                    <Form.Select className="mb-4 text-center" onChange={(event) => handleCounter(event.target.value)}>
                         <option value='0'>Select a counter</option>
                         <option value='1'>Counter 1</option>
                         <option value='2'>Counter 2</option>

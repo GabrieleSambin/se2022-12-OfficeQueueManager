@@ -10,16 +10,21 @@ import AppContainer from './components/AppContainer';
 import * as View from './views';
 
 const App = () => {
-  const [ticket, setTicket] = useState(1);
-  const [counter, setCounter] = useState(1)
+  const [ticket, setTicket] = useState(0);
+  const [counter, setCounter] = useState(0)
   const location = useLocation();
+
+  const handleCTable = (c, t) => {
+    setCounter(c);
+    setTicket(t);
+  }
 
   return (
     <AppContainer>
       <Routes location={location} key={location.pathname}>
         <Route index path='/' element={<View.Home />} />
         <Route index path='/customer' element={<View.Customer counter={counter} ticket={ticket} />} />
-        <Route index path='/counter' element={<View.Counter setCounter={setCounter} setTicket={setTicket} />} />
+        <Route index path='/counter' element={<View.Counter handleCTable={handleCTable} />} />
         <Route index path='/managerStats' element={<View.ManagerStats />} />
         <Route index path='/managerConfiguration' element={<View.ManagerConfiguration />} />
         <Route path='*' element={<View.ErrorView />} />

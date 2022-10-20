@@ -81,12 +81,12 @@ function TableCounterData(props) {
     const [TicketCalled, setTicketCalled] = useState([])
     const notify = useNotification();
 
-    console.log(props.countert);
-    console.log(props.counter.ID);
-    console.log(props.ticket);
+    // console.log(props.countert);
+    // console.log(props.counter.ID);
+    // console.log(props.ticket);
 
     useEffect(() => {
-        if (props.countert == props.counter.ID) {
+        if (props.countert === props.counter.ID) {
             setTicketCalled(props.ticket)
         }
         else {
