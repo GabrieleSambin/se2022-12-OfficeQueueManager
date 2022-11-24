@@ -10,7 +10,13 @@ const cors = require('cors');
 const TicketDAO = require('./dao/TicketDAO');
 
 //Init express and set-up middlewares
-const app = express();
+const app1 = express();
+app1.disable("x-powered-by");
+
+const helmet = require("helmet");
+const app = express(); // Compliant
+app.use(helmet.hidePoweredBy());
+
 app.use(morgan('dev'));
 app.use(express.json());
 
