@@ -29,7 +29,7 @@ function Queue(ST_ID, date, first = 1, last = 1) {
         return this.last - this.first;
     }
     this.isEmpty = function () {
-        return this.getLenght === 0;
+        return this.getLenght() === 0;
     }
 }
 
