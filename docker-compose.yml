@@ -1,0 +1,34 @@
+version: '20.10.10'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "3001:3001"
+    # environment:
+    #   - CLIENT_ORIGIN=http://127.0.0.1:3000
+    networks:
+      - webappnetwork
+    volumes:
+      - sqlite3db:/server
+    image: lucatamburo/se2022-12-officequeuemanager:OFMSS
+  client:
+    depends_on:
+      - server
+    build: ./client
+      # args:
+      # - REACT_APP_API_BASE_URL=http://127.0.0.1:5001
+    ports:
+      - "3000:3000"
+    links:
+      - server
+    networks:
+      - webappnetwork
+    image: lucatamburo/se2022-12-officequeuemanager:OFMSCS
+volumes:
+  sqlite3db:
+
+
+networks:
+  webappnetwork:
+    driver: bridge
