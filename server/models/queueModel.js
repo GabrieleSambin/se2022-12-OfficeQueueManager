@@ -23,7 +23,7 @@ function Queue(ST_ID, date, first = 1, last = 1) {
             this.first++;
             return this.first;
         }
-        return;
+        return; //FIXED ABOUT SONAR
     }
     this.getLenght = function () {
         return this.last - this.first;

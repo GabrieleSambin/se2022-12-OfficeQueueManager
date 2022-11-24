@@ -79,7 +79,6 @@ const Display = (props) => {
 
 function TableCounterData(props) {
     const [TicketCalled, setTicketCalled] = useState([])
-    const notify = useNotification();
 
 
     useEffect(() => {

@@ -11,7 +11,6 @@ exports.selectService = () => {
         db.all(sql, [], function (err, rows) {
             if (err) {
                 reject(err);
-                return;
             } else {
                 if (rows.length == 0) {
                     resolve(404);

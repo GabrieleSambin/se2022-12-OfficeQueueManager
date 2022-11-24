@@ -12,7 +12,6 @@ import useNotification from '../hooks/useNotification';
 import api from "../API";
 
 const Counter = (props) => {
-    //const [ticket, setTicket] = useState([]);
     const [counter, setCounter] = useState(0)
     const notify = useNotification();
     const navigate = useNavigate();
