@@ -9,7 +9,7 @@ const CounterDAO = require('../dao/CounterDAO');
 
 function computeWaitingTime(serviceType) {
     //serviceType can be 1,2,3,4
-    //THIS IS WHERE WE SET SERVICE TIME
+    //THIS IS WHERE WE SET SERVICE
     const serviceTime = [5, 7, 3, 3]; // 1 cell of array for request type, each cell contains the service time in minutes
 
     //Counter service type list
